@@ -1,7 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
-	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StartVC">
-	<!-- TODO Add Nodes -->
-</BorderPane>
+
+<AnchorPane fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StartVC">
+   <children>
+      <Pane fx:id="backgroundLayer1_1" layoutY="-1200.0" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/BG.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer1_2" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/BG.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+               <Pane fx:id="backgroundLayer2_1" layoutY="-1200.0" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/Stars.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer2_2" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_04/Stars.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+                        <Pane fx:id="backgroundLayer3_1" layoutY="-1200.0" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/Planets.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer3_2" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_04/Planets.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+                        <Pane fx:id="backgroundLayer4_1" layoutY="-1200.0" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_03/Meteors.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer4_2" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/Meteors.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Pane fx:id="loginBox" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <TextField fx:id="txtUsername" alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="255.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" styleClass="textfield" />
+            <Button fx:id="btnLogin" focusTraversable="false" layoutX="300.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Login" />
+            <Button fx:id="btnRegister" focusTraversable="false" layoutX="401.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Register" />
+            <PasswordField fx:id="txtPassword" alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="288.0" prefHeight="25.0" prefWidth="200.0" promptText="Password" styleClass="textfield" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
