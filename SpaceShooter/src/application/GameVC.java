@@ -1,6 +1,6 @@
 package application;
 
-public class StartVC {
+public class GameVC {
 
 
 }
