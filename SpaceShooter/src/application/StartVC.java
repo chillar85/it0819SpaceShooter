@@ -1,6 +1,5 @@
 package application;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import javafx.animation.Animation;
@@ -42,14 +41,14 @@ public class StartVC {
     int loop = 0;
     public void initialize(){
     	mainBox.requestFocus();
-    	timer = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
+    	timer = new Timeline(new KeyFrame(Duration.seconds(0.02), event -> {
     		if (loop%5==0) {
     			moveBackgroundLayer1();
 			}
-    		if (loop%3==0) {
+    		if (loop%2==0) {
     			moveBackgroundLayer2();
 			}
-    		if (loop%2==0) {
+    		if (loop%4==0) {
     			moveBackgroundLayer3();
 			}
     		if (loop%1==0) {

@@ -30,3 +30,52 @@
 	-fx-border-color: gray;
 	-fx-cursor: hand;
 }
+.combo-box{
+	-fx-text-fill: white;
+	-fx-background-color: gray;
+	-fx-border-color: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-background: transparent;
+}
+
+.combo-box:focused{
+	-fx-text-fill: white;
+	-fx-background-color: steelblue;
+	-fx-border-color: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-background: transparent;
+}
+
+.combo-box>.list-cell{
+	-fx-alignment: center;
+	-fx-text-fill: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-background: transparent;
+}
+.combo-box-popup .list-view{
+	-fx-background-color: gray;
+	-fx-border-color: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-background: transparent;
+}
+
+.combo-box-popup .list-cell{
+	-fx-background-color: gray;
+	-fx-text-fill: white;
+	-fx-background: transparent;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+}
+.combo-box-popup .list-cell:hover{
+	-fx-background-color: steelblue;
+	-fx-text-fill: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-background: transparent;
+}
+
+
