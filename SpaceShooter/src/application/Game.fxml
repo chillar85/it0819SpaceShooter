@@ -1,7 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
-<?import javafx.scene.layout.BorderPane?>
-	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GametVC">
-	<!-- TODO Add Nodes -->
-</BorderPane>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameVC">
+   <children>
+      <Pane fx:id="backgroundLayer1_1" layoutY="-1200.0" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg1_1" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/BG.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer1_2" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg1_2" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/BG.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+               <Pane fx:id="backgroundLayer2_1" layoutY="-1200.0" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg2_1" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/Stars.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer2_2" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg2_2" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_04/Stars.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+                        <Pane fx:id="backgroundLayer3_1" layoutY="-1200.0" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg3_1" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/Planets.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer3_2" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg3_2" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_04/Planets.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+                        <Pane fx:id="backgroundLayer4_1" layoutY="-1200.0" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg4_1" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_03/Meteors.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="backgroundLayer4_2" mouseTransparent="true" prefHeight="1200.0" prefWidth="800.0">
+         <children>
+            <ImageView fx:id="backgroundLayerImg4_2" fitHeight="1200.0" fitWidth="800.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../img/background/Space_BG_02/Meteors.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Pane fx:id="projectileBox" mouseTransparent="true" prefHeight="600.0" prefWidth="800.0" />
+      <Pane fx:id="gameBox" mouseTransparent="true" prefHeight="600.0" prefWidth="800.0" />
+      <Pane fx:id="menuBox" mouseTransparent="true" prefHeight="600.0" prefWidth="800.0" />
+   </children>
+</AnchorPane>

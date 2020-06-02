@@ -1,38 +1,45 @@
 package application;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
 public class RegisterVC {
 	
-    @FXML	private AnchorPane		mainBox;
-    @FXML	private Pane			loginBox;
-    @FXML	private Pane			backgroundLayer1_1;
-    @FXML	private Pane			backgroundLayer1_2;
-    @FXML	private Pane			backgroundLayer2_1;
-    @FXML	private Pane			backgroundLayer2_2;
-    @FXML	private Pane			backgroundLayer3_1;
-    @FXML	private Pane			backgroundLayer3_2;
-    @FXML	private Pane			backgroundLayer4_1;
-    @FXML	private Pane			backgroundLayer4_2;
-    @FXML	private TextField 		txtUsername;
-    @FXML	private PasswordField	txtPassword;
-    @FXML	private Button 			btnRegister;
-    @FXML   private ComboBox<String>		comboLocation;
-    @FXML   private ComboBox<String>		comboProfilePicture;
+    @FXML	private AnchorPane			mainBox;
+    @FXML	private Pane				loginBox;
+    @FXML	private Pane				backgroundLayer1_1;
+    @FXML	private Pane				backgroundLayer1_2;
+    @FXML	private Pane				backgroundLayer2_1;
+    @FXML	private Pane				backgroundLayer2_2;
+    @FXML	private Pane				backgroundLayer3_1;
+    @FXML	private Pane				backgroundLayer3_2;
+    @FXML	private Pane				backgroundLayer4_1;
+    @FXML	private Pane				backgroundLayer4_2;
+    @FXML	private TextField 			txtUsername;
+    @FXML	private PasswordField		txtPassword;
+    @FXML	private Button 				btnRegister;
+    @FXML	private Button 				btnCancel;
+    @FXML   private ComboBox<String>	comboLocation;
+    @FXML   private ComboBox<String>	comboProfilePicture;
     
     
     ImageView background;
@@ -45,6 +52,7 @@ public class RegisterVC {
     int loop = 0;
     public void initialize(){
     	mainBox.requestFocus();
+    	//
     	comboLocation.getItems().addAll("Test1", "Test2","Test3","Test4");
     	comboProfilePicture.getItems().addAll("Test1", "Test2","Test3","Test4");
     	timer = new Timeline(new KeyFrame(Duration.seconds(0.02), event -> {
@@ -65,9 +73,48 @@ public class RegisterVC {
     	timer.setCycleCount(Animation.INDEFINITE);
     	timer.play();
  
-    	
+    	setAllEvents();
     }
 
+    private void setAllEvents() {
+		// TODO Auto-generated method stub
+    	btnRegister.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				if (register() == false) {
+					
+				}
+				else {
+					goToStartView();
+				}
+			}
+		});
+    	btnCancel.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				goToStartView();
+			}
+		});
+	}
+    private boolean register() {
+    	//To-Do: Abfrage ob Username schon vorhanden, wenn ja: neuen Username wählen lassen| wenn nein: Datensatz in Datenbank speichern
+		return true;
+	}
+    
+    private void goToStartView() {
+    	try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
+            Stage stage = (Stage) mainBox.getScene().getWindow();
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            stage.setScene(scene);
+        }catch (IOException io){
+            io.printStackTrace();
+        }
+
+	}
     private void moveBackgroundLayer1() {
     	if (backgroundLayer1_1.getLayoutY() == 1200) {
     		backgroundLayer1_1.setLayoutY(-1200);
@@ -82,6 +129,7 @@ public class RegisterVC {
     private void moveBackgroundLayer2() {
     	if (backgroundLayer2_1.getLayoutY() == 1200) {
     		backgroundLayer2_1.setLayoutY(-1200);
+    		
 		}
     	if (backgroundLayer2_2.getLayoutY() == 1200) {
     		backgroundLayer2_2.setLayoutY(-1200);

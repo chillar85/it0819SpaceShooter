@@ -84,6 +84,7 @@
             <PasswordField fx:id="txtPassword" alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="256.0" prefHeight="25.0" prefWidth="200.0" promptText="Password" styleClass="textfield" />
             <ComboBox fx:id="comboLocation" centerShape="false" layoutX="300.0" layoutY="287.0" prefHeight="25.0" prefWidth="200.0" promptText="Location" />
             <ComboBox fx:id="comboProfilePicture" layoutX="300.0" layoutY="320.0" prefHeight="25.0" prefWidth="200.0" promptText="Profile Picture" />
+            <Button fx:id="btnCancel" focusTraversable="false" layoutX="300.0" layoutY="384.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Cancel" />
          </children>
       </Pane>
    </children>
