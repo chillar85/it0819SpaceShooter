@@ -20,6 +20,8 @@ public class Player extends Box{
 		createImageView();
 		// TODO Auto-generated constructor stub
 	}
+	
+	//Loading Player Skin
 	ImageView imgView;
 	private void createImageView() {
 		imgView = new ImageView();
@@ -31,12 +33,14 @@ public class Player extends Box{
 		getChildren().add(imgView);
 
 	}
+	//set Size of PlayerSkin to Player Model
 	public void setImgSize() {
 		imgView.setFitHeight(getPrefHeight());
 		imgView.setFitWidth(getPrefWidth());
 		
 	}	
 
+	//Movement for the Player
     public void movePlayer() {
 		// TODO Auto-generated method stub
     		getParent().getParent().setOnMouseMoved(new EventHandler<MouseEvent>() {

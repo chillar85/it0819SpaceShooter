@@ -13,8 +13,10 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Start.fxml"));
-			Scene scene = new Scene(root,800,600);
+			Scene scene = new Scene(root,790,590);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setResizable(false);
+			primaryStage.setIconified(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -40,6 +41,8 @@ public class GameVC {
     Player player;
     Timeline timer;
     int loop;
+    Random rnd = new Random();
+    CollisionManager cm = new CollisionManager();
     
     
 	public GameVC() {
@@ -52,18 +55,7 @@ public class GameVC {
 		setAllGameParams();
 	}
 	
-	private void createPlayer() {
-		// TODO Auto-generated method stub
-		player = new Player(1);
-      	player.setLayoutX(400);
-      	player.setLayoutY(400);
-      	player.setPrefHeight(75);
-      	player.setPrefWidth(100);
-      	
-      	gameBox.getChildren().add(player);
-      	player.setImgSize();
-      	
-	}
+
 	private void setEvents() {
 		fireprojectileObj();
 		
@@ -72,7 +64,9 @@ public class GameVC {
     	mainBox.setCursor(Cursor.NONE);
     	timer = new Timeline(new KeyFrame(Duration.seconds(0.02), ev -> {
     		player.movePlayer();
-
+    		if (loop == 0 || loop%50 == 0) {
+				createEnemy(enemyCnt);
+			}
     		if (loop%5==0) {
     			moveBackgroundLayer1();
 			}
@@ -85,12 +79,29 @@ public class GameVC {
     		if (loop%1==0) {
     			moveBackgroundLayer4();
 			}
-    		if (loop% 12 == 0) {
-    			shooting();
-			}
     		for (Projectile projectile  : projectileList) {
 				projectile.moveProjectile();
 
+			}
+    		for (Enemy enemy : enemyList) {
+				enemy.moveEnemy();
+			}
+    		for (Enemy enemy : enemyList) {
+				for (Projectile projectile : projectileList) {
+					if (cm.checkBoundsProjectile(projectile, enemy)) {
+						System.out.println("Enemy Hit");
+						projectileList.remove(projectile);
+						projectileBox.getChildren().remove(projectile);
+						enemyList.remove(enemy);
+						gameBox.getChildren().remove(enemy);
+						break;				
+					}
+				}
+			}
+    		for (Enemy enemy : enemyList) {
+				if (cm.checkBoundsPlayer(player, enemy)) {
+					System.out.println("Player Hit");
+				}
 			}
     			
     		
@@ -99,9 +110,26 @@ public class GameVC {
     	timer.setCycleCount(Animation.INDEFINITE);
 	    timer.play();
     }
-	
+	//======= Creating Player ========
+	private void createPlayer() {
+		// TODO Auto-generated method stub
+		player = new Player(0);
+      	player.setLayoutX(400);
+      	player.setLayoutY(400);
+      	player.setPrefHeight(75);
+      	player.setPrefWidth(100);
+     	//Shot Hitbox
+      	//player.setStyle("-fx-border-color: white");
+       	gameBox.getChildren().add(player);
+      	player.setImgSize();
+      	
+	}
+	//======= Creating Projectiles for Player
 	boolean shoot;
 	int shootCnt = 0;
+	Timeline projectileTimer;
+	int loopShooting;
+	//Events for shooting when mouse Pressed
     public void fireprojectileObj() {
 		// TODO Auto-generated method stub
 		mainBox.setOnMouseReleased(new EventHandler<Event>() {
@@ -111,8 +139,10 @@ public class GameVC {
 				// TODO Auto-generated method stub
 				System.out.println("Mouse Released");
 				shoot = false;
+				projectileTimer.stop();
 			}
 		});
+
 		mainBox.setOnMousePressed(new EventHandler<Event>() {
 
 			@Override
@@ -120,39 +150,75 @@ public class GameVC {
 				// TODO Auto-generated method stub
 				System.out.println("Mouse Pressed");
 				shoot = true;
+				loopShooting = 0;
+				projectileTimer = new Timeline(new KeyFrame(Duration.seconds(0.02), ev -> {
+					if (loopShooting == 0 || loopShooting % 12 == 0) {;
+						shooting();
+					}
+					loopShooting += 1;
+				}));
+				projectileTimer.setCycleCount(Animation.INDEFINITE);
+				projectileTimer.play();
 			}
 		});
 	}
+    //Check if mouse is Pressed to create Projectiles and shoot them
     ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
     private void shooting() {
 		// TODO Auto-generated method stub
     	if (shoot) {
-    		shootCnt +=1;
+    		
 			Projectile projectile = new Projectile(shootCnt);
-			projectile.setPrefHeight(80);
-			projectile.setPrefWidth(40);
+			projectile.setPrefHeight(30);
+			projectile.setPrefWidth(15);
 			if (shootCnt %2 == 0) {
-				projectile.setLayoutX(player.getLayoutX()+17);
-				projectile.setLayoutY(player.getLayoutY()-40);
+				projectile.setLayoutX(player.getLayoutX()+25);
+				projectile.setLayoutY(player.getLayoutY());
 			}
 			else {
-				projectile.setLayoutX(player.getLayoutX()+43);
-				projectile.setLayoutY(player.getLayoutY()-40);
+				projectile.setLayoutX(player.getLayoutX()+55);
+				projectile.setLayoutY(player.getLayoutY());
 			}
 
 			projectileBox.getChildren().add(projectile);
 			projectile.setImgSize();
+			//Shot Hitbox
+	    	//projectile.setStyle("-fx-border-color: white");
 			projectileList.add(projectile);
+			shootCnt +=1;
 		}
+    
     	
 	}
     public void removeProjectile(Projectile t) {
     	projectileBox.getChildren().remove(t);
     	projectileList.remove(t);
     }
+    
+    //====== Creating Enemies ========
+    int enemyCnt = 0;
+    ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+    private void createEnemy(int index) {
+		// TODO Auto-generated method stub
+    	Enemy enemy = new Enemy(index);
+    	enemy.setLayoutX(rnd.nextInt(600)+100);
+    	enemy.setLayoutY(-200);
+    	enemy.setPrefHeight(rnd.nextInt(75+-50)+50+1);
+    	enemy.setPrefWidth(rnd.nextInt(75+-50)+50+1);
+    	gameBox.getChildren().add(enemy);
+    	enemy.setImgSize();
+    	//Shot Hitbox
+    	//enemy.setStyle("-fx-border-color: white");
+    	enemyList.add(enemy);
+    	enemyCnt += 1;
+    	
+	}
 	
 	
 	
+    
+    
+    //======== Background Parallax ========
 	
     private void moveBackgroundLayer1() {
     	if (backgroundLayer1_1.getLayoutY() == 1200) {

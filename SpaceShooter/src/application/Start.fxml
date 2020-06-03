@@ -79,8 +79,8 @@
          </children></Pane>
       <Pane fx:id="loginBox" prefHeight="600.0" prefWidth="800.0">
          <children>
-            <TextField fx:id="txtUsername" alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="255.0" prefHeight="25.0" prefWidth="200.0" promptText="Username1" styleClass="textfield" />
-            <Button fx:id="btnLogin" focusTraversable="false" layoutX="300.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Login1" />
+            <TextField fx:id="txtUsername" alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="255.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" styleClass="textfield" />
+            <Button fx:id="btnLogin" focusTraversable="false" layoutX="300.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Login" />
             <Button fx:id="btnRegister" focusTraversable="false" layoutX="401.0" layoutY="321.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Register" />
             <PasswordField fx:id="txtPassword" alignment="CENTER" focusTraversable="false" layoutX="300.0" layoutY="288.0" prefHeight="25.0" prefWidth="200.0" promptText="Password" styleClass="textfield" />
          </children>
