@@ -79,6 +79,11 @@
          </children></Pane>
       <Pane fx:id="projectileBox" mouseTransparent="true" prefHeight="600.0" prefWidth="800.0" />
       <Pane fx:id="gameBox" mouseTransparent="true" prefHeight="600.0" prefWidth="800.0" />
-      <Pane fx:id="menuBox" mouseTransparent="true" prefHeight="600.0" prefWidth="800.0" />
+      <Pane fx:id="menuBox" mouseTransparent="true" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <TextField fx:id="txtTime" editable="false" focusTraversable="false" layoutX="14.0" layoutY="14.0" mouseTransparent="true" styleClass="textfield" />
+            <TextField fx:id="txtScore" alignment="CENTER_RIGHT" editable="false" focusTraversable="false" layoutX="637.0" layoutY="14.0" mouseTransparent="true" styleClass="textfield" />
+            <ProgressBar fx:id="proBarHealth" focusTraversable="false" layoutX="300.0" layoutY="18.0" mouseTransparent="true" prefWidth="200.0" progress="1.0" />
+         </children></Pane>
    </children>
 </AnchorPane>

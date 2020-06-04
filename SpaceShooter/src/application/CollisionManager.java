@@ -1,5 +1,6 @@
 package application;
 
+
 public class CollisionManager {
 
 	public CollisionManager() {
@@ -13,4 +14,5 @@ public class CollisionManager {
 	public boolean checkBoundsPlayer(Player p, Enemy e) {
 		return p.getBoundsInParent().intersects(e.getBoundsInParent());
 	}
+
 }

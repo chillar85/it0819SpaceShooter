@@ -20,4 +20,9 @@ public class DataManager {
 		return astroidList;
 	}
 	
+	
+	ArrayList<String> exploFrames = new ArrayList<String>();
+	public ArrayList<String> createExploFrames(){
+		return exploFrames;
+	}
 }

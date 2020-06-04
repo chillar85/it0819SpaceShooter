@@ -51,7 +51,8 @@ public class Background extends Pane{
 		
 	}
 	
-    private void moveBackgroundLayer() {
+    @SuppressWarnings("unused")
+	private void moveBackgroundLayer() {
     	if (pane1.getLayoutY() == 1200) {
     		pane2.setLayoutY(-1200);
 		}

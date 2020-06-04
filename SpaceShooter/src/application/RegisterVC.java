@@ -23,9 +23,18 @@ import javafx.util.Duration;
 
 
 public class RegisterVC {
-	
+	//Main GFX
     @FXML	private AnchorPane			mainBox;
+    //Register-Form GFX
     @FXML	private Pane				loginBox;
+    @FXML	private TextField 			txtUsername;
+    @FXML	private PasswordField		txtPassword;
+    @FXML	private Button 				btnRegister;
+    @FXML	private Button 				btnCancel;
+    @FXML   private ComboBox<String>	comboLocation;
+    @FXML   private ComboBox<String>	comboProfilePicture;
+    
+    //Background GFX
     @FXML	private Pane				backgroundLayer1_1;
     @FXML	private Pane				backgroundLayer1_2;
     @FXML	private Pane				backgroundLayer2_1;
@@ -34,12 +43,7 @@ public class RegisterVC {
     @FXML	private Pane				backgroundLayer3_2;
     @FXML	private Pane				backgroundLayer4_1;
     @FXML	private Pane				backgroundLayer4_2;
-    @FXML	private TextField 			txtUsername;
-    @FXML	private PasswordField		txtPassword;
-    @FXML	private Button 				btnRegister;
-    @FXML	private Button 				btnCancel;
-    @FXML   private ComboBox<String>	comboLocation;
-    @FXML   private ComboBox<String>	comboProfilePicture;
+
     
     
     ImageView background;
@@ -56,18 +60,7 @@ public class RegisterVC {
     	comboLocation.getItems().addAll("Test1", "Test2","Test3","Test4");
     	comboProfilePicture.getItems().addAll("Test1", "Test2","Test3","Test4");
     	timer = new Timeline(new KeyFrame(Duration.seconds(0.02), event -> {
-    		if (loop%5==0) {
-    			moveBackgroundLayer1();
-			}
-    		if (loop%2==0) {
-    			moveBackgroundLayer2();
-			}
-    		if (loop%4==0) {
-    			moveBackgroundLayer3();
-			}
-    		if (loop%1==0) {
-    			moveBackgroundLayer4();
-			}
+    		moveAllBackground(loop);
     		loop += 1;    	
     	}));
     	timer.setCycleCount(Animation.INDEFINITE);
@@ -114,6 +107,22 @@ public class RegisterVC {
             io.printStackTrace();
         }
 
+	}
+    
+    private void moveAllBackground(int loop) {
+		// TODO Auto-generated method stub
+		if (loop%5==0) {
+			moveBackgroundLayer1();
+		}
+		if (loop%2==0) {
+			moveBackgroundLayer2();
+		}
+		if (loop%4==0) {
+			moveBackgroundLayer3();
+		}
+		if (loop%1==0) {
+			moveBackgroundLayer4();
+		}
 	}
     private void moveBackgroundLayer1() {
     	if (backgroundLayer1_1.getLayoutY() == 1200) {

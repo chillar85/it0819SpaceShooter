@@ -6,12 +6,27 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Projectile extends Box{
-	int index;
-	ImageView imgView;
-	String projectileImg = SVars.PATH+"/img/projectile/Shot_1_002.png";
-	public Projectile(int index) {
+	private int index;
+	private ImageView imgView;
+	private String projectileImg = SVars.PATH+"/img/projectile/Shot_1_002.png";
+	private double startPosY;
+	
+	public int getIndex() {
+		return index;
+	}
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	public double getStartPosY() {
+		return startPosY;
+	}
+	public void setStartPosY(double startPosY) {
+		this.startPosY = startPosY;
+	}
+	public Projectile(int index, double startPos) {
 		// TODO Auto-generated constructor stub
 		this.index = index;
+		this.startPosY = startPos;
 		createImageView();
 	}
 	//Loading Skin for the Projectiles

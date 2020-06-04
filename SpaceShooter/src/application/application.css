@@ -78,4 +78,40 @@
 	-fx-background: transparent;
 }
 
+.progress-bar {
+    -fx-background-color: gray;
+    -fx-background-radius: 10;
+    -fx-border-color: white;
+    -fx-border-radius: 10;
+ 
+}
+ 
+.progress-bar .track{
+    -fx-background-color: gray;
+    -fx-background-radius: 10
+}
+ 
+.progress-bar .bar { 
+    -fx-background-color: steelblue;
+    -fx-background-radius: 10;
+    -fx-border-color: white;
+    -fx-border-radius: 10;
+    
+}
+.paneEnd{
+	-fx-text-fill: white;
+	-fx-background-color: steelblue;
+	-fx-border-color: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+}
+.paneScore{
+	-fx-text-fill: white;
+	-fx-background-color: transparent;
+	-fx-border-color: white;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+}
+
+
 

@@ -25,7 +25,15 @@ import javafx.util.Duration;
 public class StartVC {
 	
     @FXML	private AnchorPane		mainBox;
+    //Login-Form GFX
     @FXML	private Pane			loginBox;
+    @FXML	private TextField 		txtUsername;
+    @FXML	private PasswordField	txtPassword;
+    @FXML	private Button 			btnLogin;
+    @FXML	private Button 			btnRegister;
+    
+    
+    //Background GFX
     @FXML	private Pane			backgroundLayer1_1;
     @FXML	private Pane			backgroundLayer1_2;
     @FXML	private Pane			backgroundLayer2_1;
@@ -42,10 +50,7 @@ public class StartVC {
     @FXML	private ImageView 		backgroundLayerImg3_2;
     @FXML	private ImageView 		backgroundLayerImg4_1;
     @FXML	private ImageView 		backgroundLayerImg4_2;
-    @FXML	private TextField 		txtUsername;
-    @FXML	private PasswordField	txtPassword;
-    @FXML	private Button 			btnLogin;
-    @FXML	private Button 			btnRegister;
+
     
     String imgPath;
     File file;
@@ -62,18 +67,7 @@ public class StartVC {
     public void initialize(){
     	mainBox.requestFocus();
     	timer = new Timeline(new KeyFrame(Duration.seconds(0.02), event -> {
-    		if (loop%5==0) {
-    			moveBackgroundLayer1();
-			}
-    		if (loop%2==0) {
-    			moveBackgroundLayer2();
-			}
-    		if (loop%4==0) {
-    			moveBackgroundLayer3();
-			}
-    		if (loop%1==0) {
-    			moveBackgroundLayer4();
-			}
+    		moveAllBackground(loop);
     		loop += 1; 
 
     	}));
@@ -135,6 +129,25 @@ public class StartVC {
             io.printStackTrace();
         }
 
+	}
+    
+    
+    
+    //======== Background Parallax ========
+    private void moveAllBackground(int loop) {
+		// TODO Auto-generated method stub
+    	if (loop%5==0) {
+			moveBackgroundLayer1();
+		}
+		if (loop%2==0) {
+			moveBackgroundLayer2();
+		}
+		if (loop%4==0) {
+			moveBackgroundLayer3();
+		}
+		if (loop%1==0) {
+			moveBackgroundLayer4();
+		}
 	}
     private void moveBackgroundLayer1() {
     	if (backgroundLayer1_1.getLayoutY() == 1200) {

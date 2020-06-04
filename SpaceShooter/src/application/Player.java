@@ -12,13 +12,19 @@ import javafx.scene.input.MouseEvent;
 public class Player extends Box{
 
 	private String playerImg = SVars.PATH+"/img/player/ship_level_1_01.png";
-	private int playerHealth = 3;
+	private int playerHealth = 10;
 	
 	
 	public Player(int index) {
 		this.index = index;
 		createImageView();
 		// TODO Auto-generated constructor stub
+	}
+	public int getPlayerHealth() {
+		return playerHealth;
+	}
+	public void setPlayerHealth(int playerHealth) {
+		this.playerHealth = playerHealth;
 	}
 	
 	//Loading Player Skin
@@ -33,6 +39,7 @@ public class Player extends Box{
 		getChildren().add(imgView);
 
 	}
+
 	//set Size of PlayerSkin to Player Model
 	public void setImgSize() {
 		imgView.setFitHeight(getPrefHeight());
