@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,6 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -65,6 +69,7 @@ public class GameVC {
 		createPlayer();
 		setEvents();
 		setAllGameParams();
+		playBGM(1);
 	}
 	
 
@@ -87,7 +92,9 @@ public class GameVC {
     		moveAllEnemy();
     		checkCollisionAll();		
     		goToEndScene();
+    		changeBGM(2,loop);
     		loop += 1; 
+    		
     		
     	}));
     	timer.setCycleCount(Animation.INDEFINITE);
@@ -113,9 +120,7 @@ public class GameVC {
 	int loopShooting;
 	//Events for shooting when mouse Pressed
     public void fireprojectileObj() {
-		// TODO Auto-generated method stub
 		mainBox.setOnMouseReleased(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent event) {
 				if (shoot) {
@@ -174,6 +179,10 @@ public class GameVC {
 			//Shot Hitbox
 	    	//projectile.setStyle("-fx-border-color: white");
 			projectileList.add(projectile);
+			File file = new File(SVars.PATH+"/sound/laser_01.mp3");
+			AudioClip laser = new AudioClip(file.toURI().toString());
+			laser.setVolume(0.05);
+			laser.play();
 			shootCnt +=1;
 		}    	
 	}
@@ -203,14 +212,16 @@ public class GameVC {
     	enemyCnt += 1;
     	
 	}
+    //Spawning Intervall for Enemies
     private void spawnEnemy(int loop) {
 		if (loop == 0 || loop%50 == 0) {
 			createEnemy(enemyCnt);
-			if (loop >= 1250) {
-				createEnemy(enemyCnt);
-			}
+		}
+		if (loop >= 1200 && loop % 100 == 0) {
+			createEnemy(enemyCnt);
 		}
 	}
+    
     //Move all current Enemy
     private void moveAllEnemy() {
 		for (Enemy enemy : enemyList) {
@@ -269,6 +280,10 @@ public class GameVC {
     }
     private void explosion(Enemy enemy){
     	createExplosion(enemy);
+    	File file = new File(SVars.PATH+"/sound/explosion_0"+(rnd.nextInt(2)+1)+".mp3");
+		AudioClip explo = new AudioClip(file.toURI().toString());
+		explo.setVolume(0.1);
+		explo.play();
     	
     }
     public void removeExplo(Explosion explo) {
@@ -300,7 +315,7 @@ public class GameVC {
     		else {
 				SVars.victory = false;
 			}
-    		
+    		bgm.stop();
 			timer.stop();
 			SVars.score = txtScore.getText();
 	    	try {
@@ -315,7 +330,32 @@ public class GameVC {
 		}
 	}
     
-    
+    //======== BGM
+
+    //Play the first BGM
+    MediaPlayer bgm;
+    ArrayList<MediaPlayer> bgmList = new ArrayList<MediaPlayer>();
+    private void playBGM(int bgmNumber) {
+		// TODO Auto-generated method stub
+    	   File bgmFile = new File(SVars.PATH+"/sound/bgm_0"+bgmNumber+".mp3");
+    	    Media media = new Media(bgmFile.toURI().toString());
+    	    bgm = new MediaPlayer(media);
+    	    bgm.setVolume(0.1);
+    	    bgm.setCycleCount(MediaPlayer.INDEFINITE);
+     	    bgm.play();
+     	    
+	}
+    //play the second BGM after 60 Seconds
+    private void changeBGM(int bgmNumber, int loop) {
+		// TODO Auto-generated method stub
+    	if (loop == 3000) {
+    		bgm.stop();
+        	playBGM(bgmNumber);
+		}
+    	if (loop == 2900 || loop == 2950 || loop == 2975) {
+			bgm.setVolume(bgm.getVolume()-0.025);
+		}
+	}
     
     //======== Background Parallax ========
 	
