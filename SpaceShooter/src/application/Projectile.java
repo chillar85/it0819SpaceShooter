@@ -24,7 +24,6 @@ public class Projectile extends Box{
 		this.startPosY = startPosY;
 	}
 	public Projectile(int index, double startPos) {
-		// TODO Auto-generated constructor stub
 		this.index = index;
 		this.startPosY = startPos;
 		createImageView();
@@ -40,7 +39,7 @@ public class Projectile extends Box{
 		getChildren().add(imgView);
 
 	}
-	// size of the Projectile skin to the proectile Model
+	//size of the Projectile skin to the projectile Model
 	public void setImgSize() {
 		imgView.setFitHeight(getPrefHeight());
 		imgView.setFitWidth(getPrefWidth());
@@ -54,10 +53,6 @@ public class Projectile extends Box{
 		setLayoutY(getLayoutY() - speed);
 		if (getLayoutY() <= -600) {
 			speed = 0;
-			die();
 		}
-	}
-	private void die() {
-	
 	}
 }

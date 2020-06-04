@@ -7,7 +7,6 @@ import java.util.Random;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,7 +59,6 @@ public class GameVC {
     
     
 	public GameVC() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void initialize() {
@@ -97,7 +95,6 @@ public class GameVC {
     }
 	//======= Creating Player ========
 	private void createPlayer() {
-		// TODO Auto-generated method stub
 		player = new Player(0);
       	player.setLayoutX(400);
       	player.setLayoutY(400);
@@ -121,9 +118,7 @@ public class GameVC {
 
 			@Override
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				if (shoot) {
-					System.out.println("Mouse Released");
 					shoot = false;
 					projectileTimer.stop();
 				}
@@ -134,9 +129,7 @@ public class GameVC {
 
 			@Override
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				if (event.isPrimaryButtonDown()) {
-					System.out.println("Mouse Pressed");
 					shoot = true;
 					loopShooting = 0;
 					projectileTimer = new Timeline(new KeyFrame(Duration.seconds(0.02), ev -> {
@@ -162,7 +155,6 @@ public class GameVC {
     //Check if mouse is Pressed to create Projectiles and shoot them
     ArrayList<Projectile> projectileList = new ArrayList<Projectile>();
     private void shooting() {
-		// TODO Auto-generated method stub
     	if (shoot) {
     		
 			Projectile projectile = new Projectile(shootCnt, player.getLayoutY());
@@ -212,20 +204,15 @@ public class GameVC {
     	
 	}
     private void spawnEnemy(int loop) {
-		// TODO Auto-generated method stub
 		if (loop == 0 || loop%50 == 0) {
 			createEnemy(enemyCnt);
 			if (loop >= 1250) {
-				createEnemy(enemyCnt);
-			}
-			if (loop >= 2500) {
 				createEnemy(enemyCnt);
 			}
 		}
 	}
     //Move all current Enemy
     private void moveAllEnemy() {
-		// TODO Auto-generated method stub
 		for (Enemy enemy : enemyList) {
 			enemy.moveEnemy();
 		}
@@ -242,14 +229,13 @@ public class GameVC {
 					break;
 				}
 				if (cm.checkBoundsProjectile(projectile, enemy)) {
-					System.out.println("Enemy Hit");
 					projectileList.remove(projectile);
 					projectileBox.getChildren().remove(projectile);
 					enemyList.remove(enemy);
 					gameBox.getChildren().remove(enemy);
 					collision = true;
 					score(enemy);
-					explosion();
+					explosion(enemy);
 					break;	
 				}
 			}
@@ -259,24 +245,40 @@ public class GameVC {
 		}
 		for (Enemy enemy : enemyList) {
 			if (cm.checkBoundsPlayer(player, enemy)) {
-				System.out.println("Player Hit");
+				explosion(enemy);
 				enemyList.remove(enemy);
 				gameBox.getChildren().remove(enemy);
 				proBarHealth.setProgress(proBarHealth.getProgress() - 0.1);
-				System.out.println(proBarHealth.getProgress());
 				break;
 			}
 		}
-	}    
-
-    private void explosion(){
-    	System.out.println("Explosion");
+	}   
+    ArrayList<Explosion> exploList = new ArrayList<Explosion>();
+    int cntexplo = 0;
+    private void createExplosion(Enemy enemy) {
+    	Explosion explo = new Explosion(cntexplo, this);
+    	explo.setPrefHeight(enemy.getPrefHeight());
+    	explo.setPrefWidth(enemy.getPrefWidth());
+    	explo.setLayoutX(enemy.getLayoutX());
+    	explo.setLayoutY(enemy.getLayoutY());
+    	gameBox.getChildren().add(explo);
+    	explo.setImgSize();
+    	exploList.add(explo);
+    	cntexplo += 1;
+    	explo.startExplo();
     }
+    private void explosion(Enemy enemy){
+    	createExplosion(enemy);
+    	
+    }
+    public void removeExplo(Explosion explo) {
+    	gameBox.getChildren().remove(explo);
+    	exploList.remove(explo);
+	}
     
     
     //======== Setting up Menu and methods for Menu
     private void gameTime(int loop) {
-		// TODO Auto-generated method stub
     	if (loop % 50 == 0) {
         	int time = Integer.valueOf(txtTime.getText());
         	time -=1;
@@ -291,9 +293,14 @@ public class GameVC {
 	}
     
     private void goToEndScene() {
-		// TODO Auto-generated method stub
-    	if (Integer.valueOf(txtTime.getText()) <= 0 || proBarHealth.getProgress() <= 0.01) {
-			System.out.println("Game Over");
+    	if (Integer.valueOf(txtTime.getText()) <= 0 || proBarHealth.getProgress() <= 0.0001) {
+    		if (Integer.valueOf(txtTime.getText()) <= 0 ) {
+				SVars.victory = true;
+			}
+    		else {
+				SVars.victory = false;
+			}
+    		
 			timer.stop();
 			SVars.score = txtScore.getText();
 	    	try {
@@ -307,6 +314,8 @@ public class GameVC {
 	        }
 		}
 	}
+    
+    
     
     //======== Background Parallax ========
 	

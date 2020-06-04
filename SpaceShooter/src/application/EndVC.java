@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -24,8 +24,10 @@ public class EndVC {
     
     //HighScoreList GFX
     @FXML 	private Pane 			scoreBox; 
-    @FXML 	private ListView<String>		lvHighScore; 
-    @FXML 	private Button 			btnTryAgain; 
+    @FXML 	private ImageView		imgVictory; 
+    @FXML 	private ImageView		imgLoose; 
+    @FXML 	private Label			lblScore; 
+    @FXML 	private Button 			btnPlayAgain; 
     
     //Background GFX
     @FXML	private Pane			backgroundLayer1_1;
@@ -62,20 +64,30 @@ public class EndVC {
     	timer.setCycleCount(Animation.INDEFINITE);
     	timer.play();
     	setAllEvents();
+    	lblScore.setText(SVars.score +" Points");
     	
     }
     
     private void setAllEvents() {
 		// TODO Auto-generated method stub
-    	btnTryAgain.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+    	btnPlayAgain.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
 				goToGameView();
 			}
 		});
+    	showVictory();
 	}
     
+    private void showVictory() {
+    	if (SVars.victory) {
+			imgVictory.setVisible(true);
+		}
+    	if (SVars.victory == false) {
+			imgLoose.setVisible(true);
+		}
+    }
     private void goToGameView() {
     	try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));

@@ -17,7 +17,7 @@ public class Main extends Application {
 		try {
 			File file = new File(SVars.PATH + "/img/icon/icon.png");
 			Image icon = new  Image(file.toURI().toString());
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("End.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Start.fxml"));
 			Scene scene = new Scene(root,790,590);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setResizable(false);
