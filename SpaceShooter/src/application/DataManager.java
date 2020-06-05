@@ -11,8 +11,13 @@ public class DataManager {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	//Setting up different Enemy Textures
 	public void createAllEnemies(){
 		createAllAstroids();		
+
+	
+
 	}
 
 	ArrayList<String> astroidList = new ArrayList<String>();
@@ -25,7 +30,7 @@ public class DataManager {
 	public int cntAstroidList() {return astroidList.size();}
 	public String get(int index){ return exploFrames.get(index);}
 	
-	
+	//======= Setting up different Explosion textures
 	ArrayList<String> exploFrames = new ArrayList<String>();
 	public ArrayList<String> createExploFrames(){
 		for (int i = 1; i <= 7; i++) {

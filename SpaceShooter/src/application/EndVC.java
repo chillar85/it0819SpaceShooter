@@ -64,7 +64,7 @@ public class EndVC {
     	timer.setCycleCount(Animation.INDEFINITE);
     	timer.play();
     	setAllEvents();
-    	lblScore.setText(SVars.score +" Points");
+    	lblScore.setText(SVars.userName+ " got " +SVars.score +" Points");
     	
     }
     

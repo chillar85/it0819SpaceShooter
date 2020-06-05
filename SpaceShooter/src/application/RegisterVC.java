@@ -70,7 +70,6 @@ public class RegisterVC {
     }
 
     private void setAllEvents() {
-		// TODO Auto-generated method stub
     	btnRegister.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
 			@Override
@@ -91,11 +90,16 @@ public class RegisterVC {
 			}
 		});
 	}
+    
+    //======== Register Data from Forms into DB
     private boolean register() {
     	//To-Do: Abfrage ob Username schon vorhanden, wenn ja: neuen Username wählen lassen| wenn nein: Datensatz in Datenbank speichern
 		return true;
 	}
     
+    
+    
+    //Back to StartVC
     private void goToStartView() {
     	try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
@@ -109,6 +113,11 @@ public class RegisterVC {
 
 	}
     
+    
+    
+    
+    
+    //======== Background Parallax =================
     private void moveAllBackground(int loop) {
 		// TODO Auto-generated method stub
 		if (loop%5==0) {

@@ -220,6 +220,9 @@ public class GameVC {
 		if (loop >= 1200 && loop % 100 == 0) {
 			createEnemy(enemyCnt);
 		}
+		if (loop >= 3000 && loop % 100 == 0) {
+			createEnemy(enemyCnt);
+		}
 	}
     
     //Move all current Enemy
@@ -315,8 +318,9 @@ public class GameVC {
     		else {
 				SVars.victory = false;
 			}
+    		timer.stop();
     		bgm.stop();
-			timer.stop();
+			
 			SVars.score = txtScore.getText();
 	    	try {
 	            FXMLLoader loader = new FXMLLoader(getClass().getResource("End.fxml"));

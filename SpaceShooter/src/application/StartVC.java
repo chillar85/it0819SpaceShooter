@@ -1,9 +1,14 @@
 package application;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.print.DocFlavor.STRING;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -74,8 +79,6 @@ public class StartVC {
     	timer.setCycleCount(Animation.INDEFINITE);
     	timer.play();
     	setAllEvents();
- 
-    	
     }
 
     private void setAllEvents() {
@@ -83,12 +86,16 @@ public class StartVC {
 
 			@Override
 			public void handle(MouseEvent event) {
-				if (login()) {
+				sendDataToHttp(txtUsername.getText(),txtPassword.getText());
+				if (serverString.equalsIgnoreCase("no") == false) {
+					System.out.println("Login ok");
+					SVars.userName = txtUsername.getText();
 					goToGameView();
 				}
 				else {
-					
-				}			
+					System.out.println("Login falsch");
+					txtUsername.requestFocus();
+				}		
 			}
 		});
     	btnRegister.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -100,11 +107,49 @@ public class StartVC {
 		});
 		
 	}
+    String serverString;
     
-    private boolean login() {
-    	//To-Do: Abfrage ob Username & Password in der DB vorhanden sind.
-    	return true;
+	public void sendDataToHttp(String user, String pass)  {
+
+		System.out.println("3. HTTP:load from server http");
+		// TODO Auto-generated method stub
+	    //1.hole Daten von Http mit Inputstream
+		try {
+			//System.out.println(readUrl("http://127.0.0.1:8080/java/getAllPlaces.php"));
+//			String serverString = readUrl("http://127.0.0.1/java/Login.php?u=Alex&p=123456");
+			serverString = readUrl("http://127.0.0.1/java/Login.php?u=" + user + "&p="+ pass);
+		
+			System.out.println(serverString);	
+			serverString.isEmpty();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//2. wandel die Daten in das gegebene Format
+		//(XML,Json,Eigenes)
+	    //3. sage DataManager bescheid 
+		//wenn alles fertig ist
+		System.out.println("4. HTTP:load finished");
 	}
+
+	private static String readUrl(String urlString) throws Exception {
+	    BufferedReader reader = null;
+	    try {
+	        URL url = new URL(urlString);
+	        reader = new BufferedReader(new InputStreamReader(url.openStream()));
+	        StringBuffer buffer = new StringBuffer();
+	        int read;
+	        char[] chars = new char[1024];
+	        while ((read = reader.read(chars)) != -1)
+	            buffer.append(chars, 0, read); 
+	
+	        return buffer.toString();
+	    } finally {
+	        if (reader != null)
+	            reader.close();
+	    }
+	    
+	}    
     
     private void goToRegisterView() {
     	try {
